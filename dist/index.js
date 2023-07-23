@@ -39,12 +39,20 @@ function calculateTax(income, taxYear = 2023) {
     return income * 0.3;
 }
 console.log("Tax = " + calculateTax(10000));
-let employee = {
+let employee1 = {
     id: 1,
     name: "Idi",
     retire: (date) => {
         console.log(date);
     },
 };
-console.log(employee);
+console.log(employee1);
+let employee2 = {
+    id: 2,
+    name: "Abi",
+    retire: (date) => {
+        console.log(date);
+    },
+};
+console.log(employee2);
 //# sourceMappingURL=index.js.map

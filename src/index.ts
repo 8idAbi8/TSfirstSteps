@@ -72,7 +72,7 @@ console.log("Tax = " + calculateTax(10000));
 // console.log("Tax = " + calculateTax(100000, 2022));
 
 /**Objects */
-let employee: {
+let employee1: {
   // object with some properties
   readonly id: number;
   name: string;
@@ -86,5 +86,23 @@ let employee: {
 };
 
 // employee.id = 2; /**Cannot assign to 'id' because it is a read-only property. */
+console.log(employee1);
 
-console.log(employee);
+/**Type Aliases */
+// Defines the structure of an Employee object
+type Employee = {
+  readonly id: number;
+  name: string;
+  retire: (date: Date) => void;
+};
+
+let employee2: Employee = {
+  id: 2,
+  name: "Abi",
+  retire: (date: Date) => {
+    console.log(date);
+  },
+};
+console.log(employee2);
+
+/**Union types */
