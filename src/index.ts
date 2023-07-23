@@ -106,3 +106,10 @@ let employee2: Employee = {
 console.log(employee2);
 
 /**Union types */
+/**With union type we can give a variable or function parameter more than one type */
+function kgToLbs(weight: number | string): number {
+  /**here we can invoke on "weight" both methods of numbers and strings. To control this we use the "Narrowing": */
+  if (typeof weight == "number") return weight * 2.2;
+  // use of string methods
+  else return parseInt(weight) * 2.2;
+}
