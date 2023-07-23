@@ -113,3 +113,90 @@ function kgToLbs(weight: number | string): number {
   // use of string methods
   else return parseInt(weight) * 2.2;
 }
+
+/**Intersection Types */
+/**Another technique for combining types */
+// let's define a costume type that rappresents an object that can be dragged on the screen
+type Draggable = {
+  drag: () => void; // method that takes no arguments and returns void
+};
+
+type Resizable = {
+  resize: () => void;
+};
+
+/** we can combine this 2 separate types in a new type, using an intersection type: */
+type UIWidget = Draggable & Resizable;
+/**UIWidget is an intersection type, so is a Draggable type & a Resizable type. */
+
+let textBox: UIWidget = {
+  drag: () => {},
+  resize: () => {},
+};
+
+/**Literal Types */
+/**Limit the values we can assign to a variable */
+
+// Literal: (exact, specific value)
+let quantity1: 55; // this is a literal type
+// quantity2 = 41;  // Type '41' is not assignable to type '55'.
+
+// define a literal type
+type Quantity = 50 | 100;
+type Metric = "cm" | "inch";
+
+let unitsOfLength: Metric = "cm";
+let quantity2: Quantity = 100;
+
+console.log(quantity2 + " " + unitsOfLength);
+
+/**Nullable Types */
+/**TS is very strict of using null or undefined values, because are common source of bugs.*/
+function greet(name: string | undefined) {
+  if (name)
+    // if has a correct value
+    console.log("Hello " + name.toUpperCase());
+  // if name is null or undefined
+  else console.log("Hello");
+}
+
+greet("idi");
+greet(undefined);
+//greet(null); // Argument of type 'null' is not assignable to parameter of type 'string'.
+/**we can pass null or undefined as argument,
+ * declaring name as a union type like this:
+ * function greet(name: string | null | undefined) ...
+ */
+
+/*********** Optional Chaining **********/
+type Custumer = {
+  birthday?: Date;
+};
+
+function getCustumer(id: number): Custumer | null | undefined {
+  return id === 0 ? null : { birthday: new Date() };
+}
+
+let custumer = getCustumer(0);
+//console.log(custumer.birthday); // 'costumer' is possibly 'null'
+
+// solution
+if (custumer !== null && custumer !== undefined) console.log(custumer.birthday);
+
+/**oprional property access operator (Optional Chaining) allows to safely access nested properties or methods of an object without the risk of encountering a runtime error if the intermediate properties are null or undefined. */
+console.log(custumer?.birthday); // executed only if we have a custumer not null or undefined
+
+let custumer1 = getCustumer(1);
+//console.log(custumer1?.birthday.getFullYear); // executed if we have the custumer, and the custumer have a birthday // 'custumer1.birthday' is possibly 'undefined'
+console.log(custumer1?.birthday?.getFullYear());
+
+// Optional element access operator
+// useful when dealing with arrays
+// customers?.[0]
+
+// Optional call operator (same syntax: ?.)
+let log: any = null; // log "is" a reference to a function
+
+//log("a"); // run time error /**TypeError: log is not a function */
+
+log?.("a"); // executed only if log is referencing an actual function

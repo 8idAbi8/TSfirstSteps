@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 let age = 34;
 let sales = 123456789;
 let course = "TypeScript";
@@ -55,4 +56,37 @@ let employee2 = {
     },
 };
 console.log(employee2);
+function kgToLbs(weight) {
+    if (typeof weight == "number")
+        return weight * 2.2;
+    else
+        return parseInt(weight) * 2.2;
+}
+let textBox = {
+    drag: () => { },
+    resize: () => { },
+};
+let quantity1;
+let unitsOfLength = "cm";
+let quantity2 = 100;
+console.log(quantity2 + " " + unitsOfLength);
+function greet(name) {
+    if (name)
+        console.log("Hello " + name.toUpperCase());
+    else
+        console.log("Hello");
+}
+greet("idi");
+greet(undefined);
+function getCustumer(id) {
+    return id === 0 ? null : { birthday: new Date() };
+}
+let custumer = getCustumer(0);
+if (custumer !== null && custumer !== undefined)
+    console.log(custumer.birthday);
+console.log(custumer === null || custumer === void 0 ? void 0 : custumer.birthday);
+let custumer1 = getCustumer(1);
+console.log((_a = custumer1 === null || custumer1 === void 0 ? void 0 : custumer1.birthday) === null || _a === void 0 ? void 0 : _a.getFullYear());
+let log = null;
+log === null || log === void 0 ? void 0 : log("a");
 //# sourceMappingURL=index.js.map
